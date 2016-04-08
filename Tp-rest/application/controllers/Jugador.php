@@ -21,7 +21,7 @@ class Jugador extends CI_Controller {
 				show_404 ();
 			$this->load->view ('jugador/index', $data);
 	}
-        
+
         public function verOjeos($id)
 	{
 			$data['ojeos'] = $this->ojeo_model->get_ojeos_jugador ($id);
@@ -29,25 +29,25 @@ class Jugador extends CI_Controller {
 				show_404 ();
 			$this->load->view ('ojeo/index', $data);
 	}
-        
-        public function agregarJugador ($nombre, $posicion) {
+
+        public function agregar($nombre, $posicion) {
 			$data['agregado'] = $this->jugador_model->agregar_jugador ($nombre, $posicion);
 			if (empty ($data['agregado']))
 				show_404 ();
-			$this->load->view ('jugador/agregado', $data);            
+			$this->load->view ('jugador/agregado', $data);
         }
-        
-       public function modificarJugador ($id, $nombre, $posicion) {
+
+       public function modificar($id, $nombre, $posicion) {
 			$data['modificado'] = $this->jugador_model->modificar_jugador ($id, $nombre, $posicion);
-			if (empty ($data['modificado']))
+			if (empty ($data['modificado'])||$data['modificado']==null)
 				show_404 ();
-			$this->load->view ('jugador/modificado', $data);            
+			$this->load->view ('jugador/modificado', $data);
         }
-        
+
 	public function eliminar($id)
 	{
 			$data['eliminado'] = $this->jugador_model->eliminar_jugador ($id);
-			if (empty ($data['eliminado']))
+			if (empty ($data['eliminado'])||$data['eliminado']==null)
 				show_404 ();
 			$this->load->view ('jugador/eliminado', $data);
 	}

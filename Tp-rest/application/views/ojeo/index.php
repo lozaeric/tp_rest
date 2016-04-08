@@ -1,3 +1,3 @@
 <?php
-	print json_encode ($jugadores);
+	print json_encode ($ojeos);
 ?>
