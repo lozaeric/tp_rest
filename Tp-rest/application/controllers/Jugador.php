@@ -5,7 +5,9 @@ class Jugador extends CI_Controller {
 	public function __construct () {
 			parent::__construct ();
 			$this->load->model ('jugador_model');
-                        $this->load->model ('ojeo_model');
+            $this->load->model ('ojeo_model');
+			$this->load->helper('ssl');
+			force_ssl ();
 	}
 	public function index()
 	{
