@@ -17,15 +17,14 @@
 
 		public function eliminar ($id) {
 			$query = $this->db->get_where ('ojeo', array ('id'=>$id));
-			if (empty($query->row_array ()))
-				return null;
-			return $this->db->delete('ojeo', array('id' => $id));
+			$this->db->delete('ojeo', array('id' => $id));
+			return $query->row_array ();
 		}
 
-                public function get_ojeos_jugador ($idJugador) {
+        public function get_ojeos_jugador ($idJugador) {
 			$query = $this->db->get_where ('ojeo', array ('idJugador'=>$idJugador));
 			return $query->row_array ();
-                }
+        }
 	}
 
 ?>
