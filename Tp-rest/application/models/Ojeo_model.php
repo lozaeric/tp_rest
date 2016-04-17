@@ -23,7 +23,7 @@
 
         public function get_ojeos_jugador ($idJugador) {
 			$query = $this->db->get_where ('ojeo', array ('idJugador'=>$idJugador));
-			return $query->row_array ();
+			return $query->result_array ();
         }
 	}
 

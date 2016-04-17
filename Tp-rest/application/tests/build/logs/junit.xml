@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="CodeIgniter Application Test Suite" tests="2" assertions="0" failures="1" errors="1" time="0.040000">
+    <testsuite name="Jugador_test" file="C:\xampp\htdocs\Tp-rest\application\tests\controllers\Jugador_test.php" tests="1" assertions="0" failures="0" errors="1" time="0.040000">
+      <testcase name="test_index" class="Jugador_test" file="C:\xampp\htdocs\Tp-rest\application\tests\controllers\Jugador_test.php" line="5" assertions="0" time="0.040000">
+        <error type="PHPUnit_Framework_Exception">Jugador_test::test_index
+PHPUnit_Framework_Exception: Argument #2 (No Value) of PHPUnit_Framework_Assert::assertContains() must be a array, traversable or string
+
+C:\xampp\htdocs\Tp-rest\application\tests\controllers\Jugador_test.php:10
+</error>
+      </testcase>
+    </testsuite>
+    <testsuite name="Welcome_test" file="C:\xampp\htdocs\Tp-rest\application\tests\controllers\Ojeo_test.php" tests="1" assertions="0" failures="1" errors="0" time="0.000000">
+      <testcase name="Warning" assertions="0" time="0.000000">
+        <failure type="PHPUnit_Framework_AssertionFailedError">Warning
+No tests found in class "Welcome_test".
+
+</failure>
+      </testcase>
+    </testsuite>
+  </testsuite>
+</testsuites>

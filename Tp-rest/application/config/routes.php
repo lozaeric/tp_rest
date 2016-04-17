@@ -49,15 +49,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'jugador';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
-$route['jugador']['get'] = 'jugador';
-$route['jugador/(:num)/([a-z]+)/([a-z]+)']['post'] = 'jugador/modificar/$1/$2/$3';
-$route['jugador/([a-z]+)/([a-z]+)']['post'] = 'jugador/agregar/$1/$2';
-$route['jugador/(:num)/ojeo']['get'] = 'jugador/verOjeos/$1';
-$route['jugador/(:num)']['get'] = 'jugador/ver/$1';
-$route['jugador/(:num)']['delete'] = 'jugador/eliminar/$1';
-$route['ojeo/(:num)']['get'] = 'ojeo/ver/$1';
-$route['ojeo/(:num)']['delete'] = 'ojeo/eliminar/$1';
-$route['ojeo']['get'] = 'ojeo';
+$route['jugadores']['get'] = 'jugador';
+$route['jugadores/(:num)']['get'] = 'jugador/ver/$1';
+$route['jugadores/(:num)']['delete'] = 'jugador/eliminar/$1';
+$route['jugadores/(:num)/ojeos']['get'] = 'jugador/verOjeos/$1';
+$route['jugadores/(:num)/(:any)/(:any)']['post'] = 'jugador/modificar/$1/$2/$3';
+$route['jugadores/(:any)/(:any)']['post'] = 'jugador/agregar/$1/$2';
+$route['ojeos']['get'] = 'ojeo';
+$route['ojeos/(:num)']['get'] = 'ojeo/ver/$1';
+$route['ojeos/(:num)']['delete'] = 'ojeo/eliminar/$1';

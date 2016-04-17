@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 08, 2016 at 08:26 AM
+-- Generation Time: Apr 17, 2016 at 09:54 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -28,21 +28,25 @@ USE `ojeador`;
 -- Table structure for table `jugador`
 --
 
+DROP TABLE IF EXISTS `jugador`;
 CREATE TABLE IF NOT EXISTS `jugador` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   `posicion` varchar(25) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `jugador`
 --
 
 INSERT INTO `jugador` (`id`, `nombre`, `posicion`) VALUES
-(7, 'Lionel Messi', 'Delantero'),
 (8, 'Javier Mascherano', 'Delantero'),
-(9, 'Marcos Rojo', 'Defensor');
+(9, 'Marcos Rojo', 'Defensor'),
+(10, 'Sergio Romero', 'Arquero'),
+(11, 'Martin Demichelis', 'Defensor'),
+(12, 'Lucas Biglia', 'Mediocampista'),
+(13, 'Lio', 'Delantero');
 
 -- --------------------------------------------------------
 
@@ -50,6 +54,7 @@ INSERT INTO `jugador` (`id`, `nombre`, `posicion`) VALUES
 -- Table structure for table `ojeo`
 --
 
+DROP TABLE IF EXISTS `ojeo`;
 CREATE TABLE IF NOT EXISTS `ojeo` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `idJugador` int(10) unsigned NOT NULL,
@@ -59,15 +64,18 @@ CREATE TABLE IF NOT EXISTS `ojeo` (
   `clubActual` varchar(25) NOT NULL,
   PRIMARY KEY (`id`,`idJugador`),
   KEY `fk_jugador_id` (`idJugador`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `ojeo`
 --
 
 INSERT INTO `ojeo` (`id`, `idJugador`, `comentario`, `fecha`, `costoPase`, `clubActual`) VALUES
-(5, 7, '', '2016-02-05', 500000, 'Barcelona'),
-(6, 8, '', '2016-04-05', 250000, 'Barcelona');
+(7, 8, '', '2016-01-05', 250000, 'Barcelona'),
+(8, 10, '', '2016-01-03', 250036, 'Manchester United'),
+(9, 13, '', '2016-01-02', 9999999, 'Barcelona'),
+(10, 13, '', '2015-01-02', 9999998, 'Barcelona'),
+(11, 12, '', '2016-04-10', 11000, 'Lazio');
 
 --
 -- Constraints for dumped tables
