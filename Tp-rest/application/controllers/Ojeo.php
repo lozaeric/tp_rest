@@ -65,4 +65,8 @@ class Ojeo extends CI_Controller {
 			show_404 ();
 		$this->load->view ('ojeo/eliminado', $data);
 	}
+	
+	public function autenticar () {
+		return $this->input->post('usuario')=="Eric" && $this->input->post('password')="9500";
+	}
 }

@@ -47,6 +47,16 @@
 			$query = $this->db->get_where ('jugador', array ('id'=>$id));
 			return $query->row_array ();
 		}
+		
+		public function ver_por_fecha () {
+				$this->db->select('nombre,posicion,fecha');
+				$this->db->from('jugador');
+				$this->db->join('ojeo', 'ojeo.idJugador = jugador.id', 'left');
+				$this->db->group_by("nombre");
+				$this->db->order_by("fecha", "DESC");
+				$query = $this->db->get ();
+				return $query->result_array ();	
+		}
 
         public function agregar_jugador ($nombre, $posicion) {
 			$data = array ("nombre"=>$nombre, "posicion"=>$posicion);

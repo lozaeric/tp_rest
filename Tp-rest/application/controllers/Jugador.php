@@ -12,6 +12,7 @@ class Jugador extends CI_Controller {
 		$this->load->model ('jugador_model');
         $this->load->model ('ojeo_model');
 		$this->load->helper('ssl');
+		$this->load->helper('cookie');
 		//$this->output->cache(5);
 		force_ssl ();
 	}
@@ -32,10 +33,10 @@ class Jugador extends CI_Controller {
   */
 	public function index()
 	{
-		$data['jugadores'] = $this->jugador_model->get_jugadores ();
-		if (empty ($data['jugadores'])||$data['jugadores']==null)
-			show_404 ();
-		$this->load->view ('jugador/index', $data);
+			$data['jugadores'] = $this->jugador_model->get_jugadores ();
+			if (empty ($data['jugadores'])||$data['jugadores']==null)
+				show_404 ();
+			$this->load->view ('jugador/index', $data);
 	}
   /**
   * Este metodo permite ver en formato JSON los datos (id,nombre,posicion) de un jugador en particular.
@@ -128,5 +129,12 @@ class Jugador extends CI_Controller {
 		if (empty ($data['eliminado'])||$data['eliminado']==null)
 			show_404 ();
 		$this->load->view ('jugador/eliminado', $data);
+	}
+	public function verPorFecha()
+	{
+		$data['jugadores'] = $this->jugador_model->ver_por_fecha ();
+		if (empty ($data['jugadores'])||$data['jugadores']==null)
+			show_404 ();
+		$this->load->view ('jugador/index', $data);
 	}
 }
