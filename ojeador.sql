@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2016 at 09:54 PM
+-- Generation Time: May 09, 2016 at 05:20 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -28,13 +28,12 @@ USE `ojeador`;
 -- Table structure for table `jugador`
 --
 
-DROP TABLE IF EXISTS `jugador`;
 CREATE TABLE IF NOT EXISTS `jugador` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   `posicion` varchar(25) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `jugador`
@@ -54,12 +53,11 @@ INSERT INTO `jugador` (`id`, `nombre`, `posicion`) VALUES
 -- Table structure for table `ojeo`
 --
 
-DROP TABLE IF EXISTS `ojeo`;
 CREATE TABLE IF NOT EXISTS `ojeo` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `idJugador` int(10) unsigned NOT NULL,
   `comentario` varchar(50) NOT NULL,
-  `fecha` char(10) NOT NULL,
+  `fecha` date NOT NULL,
   `costoPase` int(10) unsigned NOT NULL,
   `clubActual` varchar(25) NOT NULL,
   PRIMARY KEY (`id`,`idJugador`),
