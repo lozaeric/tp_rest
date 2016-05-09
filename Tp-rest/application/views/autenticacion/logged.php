@@ -17,24 +17,32 @@
             }).show();
 
         });
-		$.get("../jugadores/verporfecha",
-		function(data, status){
-			var jugadores = JSON.parse (data), tablaJugadores;
+		$.ajax({
+			url: "../jugadores/verporfecha",
+			type: 'post',
+			headers: {
+				usuario: 'Eric',   
+				password: '9500'  
+			},
+			success: function (data) {
+				var jugadores = JSON.parse (data), tablaJugadores;
 
-			for (i = 0; i < jugadores.length; i++) {
-				tablaJugadores += "<tr><td>"+jugadores[i].nombre+"</td>"+"<td>"+jugadores[i].posicion+"</td>";
-				if (jugadores[i].fecha!=null)
-					tablaJugadores += "<td>"+jugadores[i].fecha+"</td></tr>";
-				else
-					tablaJugadores += "<td></td></tr>";
+				for (i = 0; i < jugadores.length; i++) {
+					tablaJugadores += "<tr><td>"+jugadores[i].nombre+"</td>"+"<td>"+jugadores[i].posicion+"</td>";
+					if (jugadores[i].fecha!=null)
+						tablaJugadores += "<td>"+jugadores[i].fecha+"</td></tr>";
+					else
+						tablaJugadores += "<td></td></tr>";
+				}
+				if (tablaJugadores==null)
+					$("#tabla").html ("<strong class=\"bg-red\">No hay ninguna carrera cargada.</strong>");
+				else 
+					$("#tabla").html (tablaJugadores);
+			},
+			error: function() {
+				$("#tabla").html ("<strong class=\"bg-red\">Hubo un error en la consulta de datos.</strong>");
 			}
-			if (tablaJugadores==null)
-				$("#tabla").html ("<strong class=\"bg-red\">No hay ninguna carrera cargada.</strong>");
-			else 
-				$("#tabla").html (tablaJugadores);
-		}).fail(function() {
-			$("#tabla").html ("<strong class=\"bg-red\">Hubo un error en la carga de carreras. Por favor, intente mas tarde.</strong>");
-		});
+	    });
 });
   </script>
 </head>

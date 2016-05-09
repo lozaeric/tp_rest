@@ -12,7 +12,7 @@ class Jugador extends CI_Controller {
 		$this->load->model ('jugador_model');
         $this->load->model ('ojeo_model');
 		$this->load->helper('ssl');
-		$this->load->helper('cookie');
+		//$this->load->helper('cookie');
 		//$this->output->cache(5);
 		force_ssl ();
 	}
@@ -34,7 +34,7 @@ class Jugador extends CI_Controller {
 	public function index()
 	{
 			$data['jugadores'] = $this->jugador_model->get_jugadores ();
-			if (empty ($data['jugadores'])||$data['jugadores']==null)
+			if (!$this->autenticar () || empty ($data['jugadores'])||$data['jugadores']==null)
 				show_404 ();
 			$this->load->view ('jugador/index', $data);
 	}
@@ -51,7 +51,7 @@ class Jugador extends CI_Controller {
 	public function ver($id)
 	{
 		$data['jugadores'] = $this->jugador_model->get_jugadores ($id);
-		if (empty ($data['jugadores'])||$data['jugadores']==null)
+		if (!$this->autenticar () || empty ($data['jugadores'])||$data['jugadores']==null)
 			show_404 ();
 		$this->load->view ('jugador/index', $data);
 	}
@@ -68,7 +68,7 @@ class Jugador extends CI_Controller {
     public function verOjeos($id)
 	{
 		$data['ojeos'] = $this->ojeo_model->get_ojeos_jugador ($id);
-		if (empty ($data['ojeos'])||$data['ojeos']==null)
+		if (!$this->autenticar () || empty ($data['ojeos'])||$data['ojeos']==null)
 			show_404 ();
 		$this->load->view ('ojeo/index', $data);
 	}
@@ -87,7 +87,7 @@ class Jugador extends CI_Controller {
   */	
     public function agregar($nombre, $posicion) {
 		$data['agregado'] = $this->jugador_model->agregar_jugador ($nombre, $posicion);
-		if (empty ($data['agregado'])||$data['agregado']==null)
+		if (!$this->autenticar () || empty ($data['agregado'])||$data['agregado']==null)
 			show_404 ();
 		$this->load->view ('jugador/agregado', $data);
     }
@@ -107,7 +107,7 @@ class Jugador extends CI_Controller {
   */	
     public function modificar($id, $nombre, $posicion) {
 		$data['modificado'] = $this->jugador_model->modificar_jugador ($id, $nombre, $posicion);
-		if (empty ($data['modificado'])||$data['modificado']==null)
+		if (!$this->autenticar () || empty ($data['modificado'])||$data['modificado']==null)
 			show_404 ();
 		$this->load->view ('jugador/modificado', $data);
     }
@@ -126,15 +126,19 @@ class Jugador extends CI_Controller {
 	public function eliminar($id)
 	{
 		$data['eliminado'] = $this->jugador_model->eliminar_jugador ($id);
-		if (empty ($data['eliminado'])||$data['eliminado']==null)
+		if (!$this->autenticar () || empty ($data['eliminado'])||$data['eliminado']==null)
 			show_404 ();
 		$this->load->view ('jugador/eliminado', $data);
 	}
 	public function verPorFecha()
 	{
 		$data['jugadores'] = $this->jugador_model->ver_por_fecha ();
-		if (empty ($data['jugadores'])||$data['jugadores']==null)
+		if (!$this->autenticar () || empty ($data['jugadores'])||$data['jugadores']==null)
 			show_404 ();
 		$this->load->view ('jugador/index', $data);
+	}
+	
+	public function autenticar () {
+		return $this->input->get_request_header ("usuario")=="Eric" && $this->input->get_request_header("password")=="9500";
 	}
 }
