@@ -35,7 +35,7 @@
 						tablaJugadores += "<td></td></tr>";
 				}
 				if (tablaJugadores==null)
-					$("#tabla").html ("<strong class=\"bg-red\">No hay ninguna carrera cargada.</strong>");
+					$("#tabla").html ("<strong class=\"bg-red\">No hay ningun jugador con fecha cargados.</strong>");
 				else 
 					$("#tabla").html (tablaJugadores);
 			},

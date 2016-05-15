@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2016 at 05:20 PM
+-- Generation Time: May 15, 2016 at 04:37 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -28,6 +28,7 @@ USE `ojeador`;
 -- Table structure for table `jugador`
 --
 
+DROP TABLE IF EXISTS `jugador`;
 CREATE TABLE IF NOT EXISTS `jugador` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
@@ -53,6 +54,7 @@ INSERT INTO `jugador` (`id`, `nombre`, `posicion`) VALUES
 -- Table structure for table `ojeo`
 --
 
+DROP TABLE IF EXISTS `ojeo`;
 CREATE TABLE IF NOT EXISTS `ojeo` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `idJugador` int(10) unsigned NOT NULL,
@@ -74,6 +76,27 @@ INSERT INTO `ojeo` (`id`, `idJugador`, `comentario`, `fecha`, `costoPase`, `club
 (9, 13, '', '2016-01-02', 9999999, 'Barcelona'),
 (10, 13, '', '2015-01-02', 9999998, 'Barcelona'),
 (11, 12, '', '2016-04-10', 11000, 'Lazio');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `usuario`
+--
+
+DROP TABLE IF EXISTS `usuario`;
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(25) NOT NULL,
+  `password` char(8) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `nombre`, `password`) VALUES
+(1, 'Eric', '9500');
 
 --
 -- Constraints for dumped tables

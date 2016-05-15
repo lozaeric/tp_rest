@@ -11,8 +11,7 @@ class Ojeo extends CI_Controller {
 		parent::__construct ();
 		$this->load->model ('ojeo_model');
 		$this->load->helper('ssl');
-		//$this->load->helper('cookie');
-		//$this->output->cache(5);
+		$this->load->library('session');
 		force_ssl ();
 	}
   /**
@@ -26,7 +25,9 @@ class Ojeo extends CI_Controller {
 	public function index()
 	{
 		$data['ojeos'] = $this->ojeo_model->get_ojeos ();
-		if (!$this->autenticar () || empty ($data['ojeos'])||$data['ojeos']==null)
+		if (! $this->autenticar ())
+			 show_error('No estás autorizado para acceder a esta página', 403, '403 Forbidden');
+		if (empty ($data['ojeos'])||$data['ojeos']==null)
 			show_404 ();
 		$this->load->view ('ojeo/index', $data);
 	}
@@ -43,7 +44,9 @@ class Ojeo extends CI_Controller {
 	public function ver($id)
 	{
 		$data['ojeos'] = $this->ojeo_model->get_ojeos ($id);
-		if (!$this->autenticar () || empty ($data['ojeos'])||$data['ojeos']==null)
+		if (! $this->autenticar ())
+			 show_error('No estás autorizado para acceder a esta página', 403, '403 Forbidden');
+		if (empty ($data['ojeos'])||$data['ojeos']==null)
 			show_404 ();
 		$this->load->view ('ojeo/index', $data);
 	}
@@ -62,12 +65,14 @@ class Ojeo extends CI_Controller {
 	public function eliminar($id)
 	{
 		$data['eliminado'] = $this->ojeo_model->eliminar ($id);
-		if (!$this->autenticar () || empty ($data['eliminado'])||$data['eliminado']==null)
+		if (! $this->autenticar ())
+			 show_error('No estás autorizado para acceder a esta página', 403, '403 Forbidden');
+		if (empty ($data['eliminado'])||$data['eliminado']==null)
 			show_404 ();
 		$this->load->view ('ojeo/eliminado', $data);
 	}
 	
 	public function autenticar () {
-		return $this->input->get_request_header ("usuario")=="Eric" && $this->input->get_request_header("password")=="9500";
+		return $this->session->nombre != null;
 	}
 }
