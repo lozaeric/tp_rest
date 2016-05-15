@@ -31,6 +31,9 @@ class Autenticacion extends CI_Controller {
 				$this->session->mark_as_temp('nombre', 120);
 			$this->load->view ('autenticacion/logged');
 		}
+		else if ($this->session->nombre != null) {
+			$this->load->view ('autenticacion/logged');
+		}
 		else
 			$this->load->view ('autenticacion/login');	
 	}
